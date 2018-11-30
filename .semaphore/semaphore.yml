@@ -13,6 +13,8 @@ blocks:
         commands:
           - checkout
           - ls -l
+      secrets:
+        - name: k8s-secrets
 
   - name: Test Service
     task:
