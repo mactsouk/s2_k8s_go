@@ -1,63 +1,29 @@
 version: v1.0
-name: First pipeline example
+name: Publish Go service to Kubernetes
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: "Build"
+  - name: Create 
     task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
       jobs:
-      - name: Docker build
+      - name: Create Kubernetes service
         commands:
           - checkout
-          - ls -1
-          - echo $APP_ENV
-          - echo "Docker build..."
-          - echo "done"
+          - ls -l
 
-  - name: "Smoke tests"
+  - name: Test Service
     task:
       jobs:
-      - name: Smoke
-        commands:
-          - checkout
-          - echo "make smoke"
-
-  - name: "Unit tests"
-    task:
-      jobs:
-      - name: RSpec
+      - name: Get time
         commands:
           - checkout
           - echo "make rspec"
 
-      - name: Lint code
+      - name: Get home page
         commands:
           - checkout
           - echo "make lint"
 
-      - name: Check security
-        commands:
-          - checkout
-          - echo "make security"
-
-  - name: "Integration tests"
-    task:
-      jobs:
-      - name: Cucumber
-        commands:
-          - checkout
-          - echo "make cucumber"
-
-  - name: "Push Image"
-    task:
-      jobs:
-      - name: Push
-        commands:
-          - checkout
-          - echo "make docker.push"
