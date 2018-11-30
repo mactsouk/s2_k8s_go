@@ -21,11 +21,9 @@ blocks:
       jobs:
       - name: Get time
         commands:
-          - checkout
-          - echo "make rspec"
+          - echo "Testing /time"
 
       - name: Get home page
         commands:
-          - checkout
-          - echo "make lint"
+          - echo "Testing /"
 
